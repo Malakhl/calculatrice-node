@@ -6,18 +6,28 @@ pipeline {
     }
 
     stages {
-
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                bat 'npm install'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                bat 'npm test'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'echo Build réussi'
+                bat 'echo Build réussi'
             }
         }
+    }
 
+    post {
+        success {
+            echo 'Bravo, déploiement réussi !'
+        }
     }
 }
